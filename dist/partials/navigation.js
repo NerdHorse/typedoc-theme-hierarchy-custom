@@ -60,11 +60,28 @@ const Navigation = ({ id, categories, items, context, }) => (typedoc_1.JSX.creat
         typedoc_1.JSX.createElement(Navigation, { id: item.id, categories: item.categories, items: item.items, context: context })))),
     items.map((item) => (typedoc_1.JSX.createElement(Item, { ...item, context: context })))));
 const Item = (item) => {
+    const hasMultipleChildren = item.children.length > 1;
     if ('id' in item) {
+        if (hasMultipleChildren) {
+            return (typedoc_1.JSX.createElement(typedoc_1.JSX.Fragment, null,
+                typedoc_1.JSX.createElement("a", { class: 'category__link js-category-link category__link--ts', href: item.context.urlTo(item), "data-id": item.url && `/${item.url}` }, item.title),
+                typedoc_1.JSX.createElement("ul", null, item.children.map((subItem) => (typedoc_1.JSX.createElement("li", null,
+                    typedoc_1.JSX.createElement("a", { class: 'category__link js-category-link', href: item.context.urlTo(subItem), "data-id": subItem.url && `/${subItem.url}` },
+                        item.context.icons[subItem.kind](),
+                        subItem.name)))))));
+        }
         return (typedoc_1.JSX.createElement(typedoc_1.JSX.Fragment, null, item.children.map((subItem) => (typedoc_1.JSX.createElement("li", null,
             typedoc_1.JSX.createElement("a", { class: 'category__link js-category-link', href: item.context.urlTo(subItem), "data-id": subItem.url && `/${subItem.url}` },
                 item.context.icons[subItem.kind](),
                 subItem.name))))));
+    }
+    if (hasMultipleChildren) {
+        return (typedoc_1.JSX.createElement(typedoc_1.JSX.Fragment, null,
+            typedoc_1.JSX.createElement("span", { class: 'category__link category__link--disable js-category-link category__link--ts' }, item.title),
+            typedoc_1.JSX.createElement("ul", null, item.children.map((subItem) => (typedoc_1.JSX.createElement("li", null,
+                typedoc_1.JSX.createElement("a", { class: 'category__link js-category-link', href: item.context.urlTo(subItem), "data-id": subItem.url && `/${subItem.url}` },
+                    item.context.icons[subItem.kind](),
+                    subItem.name)))))));
     }
     return (typedoc_1.JSX.createElement(typedoc_1.JSX.Fragment, null, item.children.map((subItem) => (typedoc_1.JSX.createElement("li", null,
         typedoc_1.JSX.createElement("a", { class: 'category__link js-category-link', href: item.context.urlTo(subItem), "data-id": subItem.url && `/${subItem.url}` },

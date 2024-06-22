@@ -1,4 +1,3 @@
-dist
 tsconfig.*tsbuildinfo
 docs
 .idea/
@@ -9,3 +8,5 @@ docs
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+node_modules
+package-lock.json

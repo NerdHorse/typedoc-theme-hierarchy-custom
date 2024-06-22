@@ -127,7 +127,37 @@ const Item = (
     context: DefaultThemeRenderContext;
   },
 ): JSX.Element => {
+
+  const hasMultipleChildren = item.children.length > 1;
   if ('id' in item) {
+    if (hasMultipleChildren) {
+      return (
+          <>
+            <a
+                class='category__link js-category-link category__link--ts'
+                href={item.context.urlTo(item)}
+                data-id={item.url && `/${item.url}`}
+            >
+              {item.title}
+            </a>
+            <ul>
+              {item.children.map((subItem) => (
+                  <li>
+                    <a
+                        class='category__link js-category-link'
+                        href={item.context.urlTo(subItem)}
+                        data-id={subItem.url && `/${subItem.url}`}
+                    >
+                      {item.context.icons[subItem.kind]()}
+                      {subItem.name}
+                    </a>
+                  </li>
+              ))}
+            </ul>
+          </>
+      );
+    }
+
     return (
       <>
         {item.children.map((subItem) => (
@@ -143,6 +173,31 @@ const Item = (
             </li>
         ))}
       </>
+    );
+  }
+
+
+  if(hasMultipleChildren){
+    return (
+        <>
+      <span class='category__link category__link--disable js-category-link category__link--ts'>
+        {item.title}
+      </span>
+          <ul>
+            {item.children.map((subItem) => (
+                <li>
+                  <a
+                      class='category__link js-category-link'
+                      href={item.context.urlTo(subItem)}
+                      data-id={subItem.url && `/${subItem.url}`}
+                  >
+                    {item.context.icons[subItem.kind]()}
+                    {subItem.name}
+                  </a>
+                </li>
+            ))}
+          </ul>
+        </>
     );
   }
 
