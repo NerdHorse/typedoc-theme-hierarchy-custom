@@ -117,9 +117,7 @@ const Navigation = ({
       </li>
     ))}
     {items.map((item) => (
-      <li>
         <Item {...item} context={context} />
-      </li>
     ))}
   </ul>
 );
@@ -132,50 +130,36 @@ const Item = (
   if ('id' in item) {
     return (
       <>
-        <a
-          class='category__link js-category-link category__link--ts'
-          href={item.context.urlTo(item)}
-          data-id={item.url && `/${item.url}`}
-        >
-          {item.title}
-        </a>
-        <ul>
-          {item.children.map((subItem) => (
+        {item.children.map((subItem) => (
             <li>
               <a
-                class='category__link js-category-link'
-                href={item.context.urlTo(subItem)}
-                data-id={subItem.url && `/${subItem.url}`}
+                  class='category__link js-category-link'
+                  href={item.context.urlTo(subItem)}
+                  data-id={subItem.url && `/${subItem.url}`}
               >
                 {item.context.icons[subItem.kind]()}
                 {subItem.name}
               </a>
             </li>
-          ))}
-        </ul>
+        ))}
       </>
     );
   }
 
   return (
     <>
-      <span class='category__link category__link--disable js-category-link category__link--ts'>
-        {item.title}
-      </span>
-      <ul>
-        {item.children.map((subItem) => (
+      {item.children.map((subItem) => (
           <li>
             <a
-              class='category__link js-category-link'
-              href={item.context.urlTo(subItem)}
-              data-id={subItem.url && `/${subItem.url}`}
+                class='category__link js-category-link'
+                href={item.context.urlTo(subItem)}
+                data-id={subItem.url && `/${subItem.url}`}
             >
               {item.context.icons[subItem.kind]()}
               {subItem.name}
             </a>
           </li>
-        ))}
-      </ul>
+      ))}
     </>
   );
 };

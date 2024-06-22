@@ -6,6 +6,7 @@ import {
   Reflection,
 } from 'typedoc';
 import { navigation } from '../partials/navigation';
+import {header} from "../partials/header";
 
 export class OverrideThemeContext extends DefaultThemeRenderContext {
   public constructor(
@@ -16,5 +17,6 @@ export class OverrideThemeContext extends DefaultThemeRenderContext {
     super(theme, page, options);
 
     this.navigation = navigation(this);
+    this.header = header(this);
   }
 }

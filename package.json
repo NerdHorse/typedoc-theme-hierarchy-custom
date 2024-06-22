@@ -23,15 +23,12 @@
     "url": "https://github.com/DiFuks"
   },
   "devDependencies": {
-    "@rushstack/eslint-patch": "^1.1.4",
     "@types/fs-extra": "^9.0.13",
     "@types/mini-css-extract-plugin": "^2.4.0",
     "@types/webpack": "^5.28.0",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.5.1",
     "css-minimizer-webpack-plugin": "^3.3.1",
-    "eslint": "^8.18.0",
-    "eslint-config-fuks": "^1.6.7",
     "mini-css-extract-plugin": "^2.4.5",
     "terser-webpack-plugin": "^5.3.3",
     "ts-loader": "^9.4.4",
@@ -44,12 +41,9 @@
     "typedoc": "^0.24.0 || ^0.25.0"
   },
   "scripts": {
-    "build": "webpack && tsc --project tsconfig.build.json",
-    "lint": "eslint \"./**/*.{ts,tsx,js}\"",
-    "prepublishOnly": "yarn lint && yarn build"
+    "build": "webpack && tsc --project tsconfig.build.json"
   },
   "dependencies": {
     "fs-extra": "11.1.1"
-  },
-  "packageManager": "yarn@3.6.1"
+  }
 }
